@@ -21,7 +21,7 @@ const PORT = Number(process.env.PORT || 4000);
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 // console.log(process.env.FRONTEND_ORIGIN ? `CORS allowed origins: ${process.env.FRONTEND_ORIGIN}` : "CORS allowed origin: http://localhost:5173");
 // CORS
-const origins = (process.env.FRONTEND_ORIGIN || "http://localhost:5173").split(",").map((o) => o.trim());
+const origins = (process.env.FRONTEND_ORIGIN || "http://localhost:5173" || "https://vibeify-seven.vercel.app/" || "https://vibeify-seven.vercel.app/api/").split(",").map((o) => o.trim());
 app.use(cors({ origin: origins, credentials: true, methods: ["GET","POST","PUT","PATCH","DELETE","OPTIONS"], allowedHeaders: ["Content-Type","Authorization"] }));
 
 // Body parsing
