@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Plus, Trash2, Upload } from "lucide-react";
+import { getImageUrl } from "@/lib/utils";
 
 const CATS = ["All", "Concert", "Corporate", "College Fest", "Brand Launch"];
 
@@ -53,7 +54,7 @@ const AdminGallery = () => {
         <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3">
           {list.map(g => (
             <div key={g._id} className="relative rounded-xl overflow-hidden group break-inside-avoid">
-              <img src={`${import.meta.env.VITE_API_URL}${g.imageUrl}`} alt={g.title} className="w-full object-cover" />
+              <img src={getImageUrl(g.imageUrl)} alt={g.title} className="w-full object-cover" />
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                 <div className="flex-1 min-w-0">
                   <p className="text-xs text-white truncate">{g.title}</p>

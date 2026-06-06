@@ -4,6 +4,7 @@ import { getCelebrities, type Celebrity } from "@/lib/api";
 import { celebrities as fallback } from "@/data/celebrities";
 import { Instagram, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getImageUrl } from "@/lib/utils";
 
 export const FeaturedCelebrities = () => {
   const [featured, setFeatured] = useState<(Celebrity | typeof fallback[0])[]>(fallback.slice(0, 4));
@@ -14,7 +15,7 @@ export const FeaturedCelebrities = () => {
     }).catch(() => {});
   }, []);
 
-  const getImage = (c: any) => c.imageUrl || c.image;
+  const getImage = (c: any) => getImageUrl(c.imageUrl || c.image);
 
   return (
     <section className="py-32 relative bg-card/20">

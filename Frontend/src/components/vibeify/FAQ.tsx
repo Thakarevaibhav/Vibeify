@@ -1,7 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const faqs = [
-  { q: "Which celebrities can Vibeify book?", a: "We work with 500+ artists across Bollywood, regional cinema, music, sports, comedy and digital. Share your brief and we'll match talent to your goals and budget." },
+  { q: "Which celebrities can Vibeify book?", a: "We work with 100+ artists across Bollywood, regional cinema, music, sports, comedy and digital. Share your brief and we'll match talent to your goals and budget." },
   { q: "What is the typical lead time?", a: "Ideally 6–10 weeks for major bookings. We've executed marquee events in as little as 14 days when calendars align." },
   { q: "Do you handle full event production?", a: "Yes — from stage design and audio-visual to security, hospitality, ticketing and post-event content. One contract, one accountable team." },
   { q: "How are fees structured?", a: "Talent fees are passed through transparently. Vibeify charges a curated agency fee plus production at cost. No surprises, ever." },

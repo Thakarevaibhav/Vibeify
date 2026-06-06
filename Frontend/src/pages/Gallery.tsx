@@ -4,6 +4,7 @@ import { Seo } from "@/components/vibeify/Seo";
 import { getGallery, type GalleryItem } from "@/lib/api";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Play } from "lucide-react";
+import { getImageUrl } from "@/lib/utils";
 
 const cats = ["All", "Concert", "Corporate", "College Fest", "Brand Launch"] as const;
 
@@ -72,7 +73,7 @@ const GalleryPage = () => {
                 className="group block relative w-full overflow-hidden rounded-2xl break-inside-avoid"
                 style={{ aspectRatio: i % 3 === 0 ? "4/5" : i % 3 === 1 ? "1/1" : "4/3" }}
               >
-                <img src={`${import.meta.env.VITE_API_URL}${g.imageUrl}`} alt={g.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src={getImageUrl(g.imageUrl)} alt={g.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
                   <div className="text-left">

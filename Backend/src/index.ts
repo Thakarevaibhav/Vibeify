@@ -2,7 +2,6 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import path from "path";
 import rateLimit from "express-rate-limit";
 import { connectDB } from "./db";
 
@@ -27,9 +26,6 @@ app.use(cors({ origin: origins, credentials: true, methods: ["GET","POST","PUT",
 // Body parsing
 app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: true, limit: "2mb" }));
-
-// Static uploads
-app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 // Rate limiting
 app.use("/api", rateLimit({ windowMs: 15 * 60 * 1000, max: 300, standardHeaders: true, legacyHeaders: false }));

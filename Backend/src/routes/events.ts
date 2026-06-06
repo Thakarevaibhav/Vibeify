@@ -2,7 +2,7 @@ import { Router, Request, Response } from "express";
 import { z } from "zod";
 import { Event } from "../models/Event";
 import { requireAdmin, AuthRequest } from "../middleware/auth";
-import { uploadSingle, fileUrl } from "../middleware/upload";
+import { uploadSingle, uploadToCloudinary } from "../middleware/upload";
 
 const router = Router();
 
@@ -54,7 +54,13 @@ router.post("/", requireAdmin, (req: AuthRequest, res: Response) => {
     if (err) return res.status(400).json({ success: false, message: err.message });
     try {
       const data = eventSchema.parse(req.body);
-      const imageUrl = req.file ? fileUrl(req.file.filename) : req.body.imageUrl;
+      let imageUrl = req.body.imageUrl;
+      
+      if (req.file) {
+        const { secure_url } = await uploadToCloudinary(req.file.buffer, req.file.originalname);
+        imageUrl = secure_url;
+      }
+      
       if (!imageUrl) return res.status(400).json({ success: false, message: "image required" });
       const event = await Event.create({ ...data, imageUrl });
       return res.status(201).json({ success: true, data: event });
@@ -70,7 +76,12 @@ router.put("/:id", requireAdmin, (req: AuthRequest, res: Response) => {
     if (err) return res.status(400).json({ success: false, message: err.message });
     try {
       const data = eventSchema.partial().parse(req.body);
-      if (req.file) (data as any).imageUrl = fileUrl(req.file.filename);
+      
+      if (req.file) {
+        const { secure_url } = await uploadToCloudinary(req.file.buffer, req.file.originalname);
+        (data as any).imageUrl = secure_url;
+      }
+      
       const event = await Event.findByIdAndUpdate(req.params.id, data, { new: true });
       if (!event) return res.status(404).json({ success: false, message: "Not found" });
       return res.json({ success: true, data: event });

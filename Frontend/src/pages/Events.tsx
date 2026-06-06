@@ -5,6 +5,7 @@ import { getEvents, type VEvent } from "@/lib/api";
 import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { getImageUrl } from "@/lib/utils";
 
 const EventsPage = () => {
   const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
@@ -76,7 +77,7 @@ const EventsPage = () => {
             {events.map((e) => (
               <article key={e._id} className="group relative overflow-hidden rounded-3xl bg-gradient-card border border-border hover:border-primary/40 transition-all">
                 <div className="relative aspect-[16/10] overflow-hidden">
-                  <img src={`${import.meta.env.VITE_API_URL}${e.imageUrl}`} alt={e.title} loading="lazy" width={1280} height={1024} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <img src={getImageUrl(e.imageUrl)} alt={e.title} loading="lazy" width={1280} height={1024} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                   <div className="absolute top-4 left-4 flex gap-2">
                     <span className="glass px-3 py-1 rounded-full text-xs font-medium">{e.category}</span>

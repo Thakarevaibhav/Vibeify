@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Instagram, Search, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import { getImageUrl } from "@/lib/utils";
 import {
   Dialog,
   DialogContent,
@@ -160,7 +161,7 @@ const CelebritiesPage = () => {
                 >
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <img
-                      src={`${import.meta.env.VITE_API_URL}${c.imageUrl}`}
+                      src={getImageUrl(c.imageUrl)}
                       alt={`${c.name} — ${c.category}`}
                       loading="lazy"
                       width={800}
@@ -177,26 +178,26 @@ const CelebritiesPage = () => {
                   </div>
 
                   <div className="p-5 space-y-3">
-                   <div>
-  <h3 className="text-xl font-bold">{c.name}</h3>
+                    <div>
+                      <h3 className="text-xl font-bold">{c.name}</h3>
 
-  <div className="flex items-center justify-between text-xs text-muted-foreground">
-    <span className="flex items-center gap-1.5">
-      <Instagram className="h-3.5 w-3.5" />
-      {c.followers} followers
-    </span>
+                      <div className="flex items-center justify-between text-xs text-muted-foreground">
+                        <span className="flex items-center gap-1.5">
+                          <Instagram className="h-3.5 w-3.5" />
+                          {c.followers} followers
+                        </span>
 
-    <a
-      href={c.slug}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-pink-500 hover:text-pink-400 transition-colors"
-    >
-      View Profile
-    </a>
-  </div>
-</div>
-                  
+                        <a
+                          href={c.slug}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-pink-500 hover:text-pink-400 transition-colors"
+                        >
+                          View Profile
+                        </a>
+                      </div>
+                    </div>
+
                     <p className="text-sm text-muted-foreground line-clamp-2">
                       {c.bio}
                     </p>
@@ -253,7 +254,7 @@ const CelebritiesPage = () => {
               </DialogHeader>
               <div className="grid md:grid-cols-2 gap-6">
                 <img
-                  src={`${import.meta.env.VITE_API_URL}${active.imageUrl}`}
+                  src={getImageUrl(active.imageUrl)}
                   alt={active.name}
                   className="w-full rounded-2xl object-cover aspect-[4/5]"
                 />

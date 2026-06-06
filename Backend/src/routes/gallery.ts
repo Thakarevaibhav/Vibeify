@@ -3,7 +3,7 @@ import { z } from "zod";
 import { Gallery } from "../models/Gallery";
 import { Upload } from "../models/Upload";
 import { requireAdmin, AuthRequest } from "../middleware/auth";
-import { uploadSingle, uploadMultiple, fileUrl } from "../middleware/upload";
+import { uploadSingle, uploadMultiple, uploadToCloudinary } from "../middleware/upload";
 
 const router = Router();
 
@@ -40,8 +40,8 @@ router.post("/", requireAdmin, (req: AuthRequest, res: Response) => {
     if (err) return res.status(400).json({ success: false, message: err.message });
     if (!req.file) return res.status(400).json({ success: false, message: "No image file provided" });
     try {
-      const imageUrl = fileUrl(req.file.filename);
-      await Upload.create({ filename: req.file.filename, originalName: req.file.originalname, mimeType: req.file.mimetype, sizeBytes: req.file.size, url: imageUrl, uploadedBy: req.adminId });
+      const { secure_url: imageUrl, public_id } = await uploadToCloudinary(req.file.buffer, req.file.originalname);
+      await Upload.create({ filename: public_id, originalName: req.file.originalname, mimeType: req.file.mimetype, sizeBytes: req.file.size, url: imageUrl, uploadedBy: req.adminId });
       const item = await Gallery.create({
         imageUrl,
         title: req.body.title || "",
@@ -64,8 +64,8 @@ router.post("/bulk", requireAdmin, (req: AuthRequest, res: Response) => {
     if (!files?.length) return res.status(400).json({ success: false, message: "No files provided" });
     try {
       const items = await Promise.all(files.map(async (file) => {
-        const imageUrl = fileUrl(file.filename);
-        await Upload.create({ filename: file.filename, originalName: file.originalname, mimeType: file.mimetype, sizeBytes: file.size, url: imageUrl, uploadedBy: req.adminId });
+        const { secure_url: imageUrl, public_id } = await uploadToCloudinary(file.buffer, file.originalname);
+        await Upload.create({ filename: public_id, originalName: file.originalname, mimeType: file.mimetype, sizeBytes: file.size, url: imageUrl, uploadedBy: req.adminId });
         return Gallery.create({ imageUrl, title: file.originalname.replace(/\.[^.]+$/, ""), category: req.body.category || "All", eventId: req.body.eventId || undefined, sortOrder: 0 });
       }));
       return res.status(201).json({ success: true, data: items, message: `${items.length} image(s) uploaded` });

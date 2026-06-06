@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Plus, Pencil, Trash2, X } from "lucide-react";
+import { getImageUrl } from "@/lib/utils";
 
 const CATS = ["Actor", "Singer", "DJ", "Influencer", "Comedian", "Sports", "Dancer"];
 const EMPTY = { slug: "", name: "", category: "Actor", bio: "", followers: "", popularity: "80", priceRange: "20", pastEvents: "", tags: "", isActive: "true" };
@@ -66,7 +67,7 @@ const AdminCelebrities = () => {
           {list.map(c => (
             <div key={c._id} className="rounded-2xl border border-border bg-card overflow-hidden">
               <div className="relative aspect-[4/5]">
-                <img src={`${import.meta.env.VITE_API_URL}${c.imageUrl}`} alt={c.name} className="w-full h-full object-cover" />
+                <img src={getImageUrl(c.imageUrl)} alt={c.name} className="w-full h-full object-cover" />
                 {!(c as any).isActive && <span className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">Inactive</span>}
               </div>
               <div className="p-3">

@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { getImageUrl } from "@/lib/utils";
 import {
   Dialog,
   DialogContent,
@@ -162,7 +163,7 @@ const AdminEvents = () => {
             >
               <div className="relative aspect-[16/9]">
                 <img
-                  src={`${import.meta.env.VITE_API_URL}${e.imageUrl}`}
+                  src={getImageUrl(e.imageUrl)}
                   alt={e.title}
                   className="w-full h-full object-cover"
                 />

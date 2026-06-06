@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { getCelebrities, submitBooking, type Celebrity } from "@/lib/api";
 import { Heart, Building2, GraduationCap, PartyPopper, Music2, Megaphone, Check, ArrowLeft, ArrowRight, Sparkles, Star } from "lucide-react";
 import { toast } from "sonner";
+import { getImageUrl } from "@/lib/utils";
 
 const eventTypes = [
   { id: "corporate", label: "Corporate", icon: Building2 },
@@ -198,7 +199,7 @@ const BookingPage = () => {
                         data.celebId === c._id ? "border-primary glow-gold" : "border-border hover:border-primary/40"
                       }`}
                     >
-                      <img src={`${import.meta.env.VITE_API_URL}${c.imageUrl}`} alt={c.name} loading="lazy" className="w-full h-full object-cover" />
+                      <img src={getImageUrl(c.imageUrl)} alt={c.name} loading="lazy" className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                       <div className="absolute bottom-2 inset-x-2 text-left">
                         <p className="text-xs font-semibold leading-tight">{c.name}</p>
