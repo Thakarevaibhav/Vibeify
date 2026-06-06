@@ -19,7 +19,6 @@ import { toast } from "sonner";
 import { Plus, Pencil, Trash2, X } from "lucide-react";
 
 const CATS = [
-  "Wedding",
   "Concert",
   "Corporate",
   "College Fest",

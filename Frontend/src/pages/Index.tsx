@@ -10,11 +10,11 @@ const Index = () => (
   <>
     <Seo
       title="Vibeify — Celebrity Event Management & Booking Agency"
-      description="India's premier luxury celebrity event management company. Book Bollywood stars, singers, DJs & influencers for weddings, concerts, corporate events & brand launches."
+      description="India's premier luxury celebrity event management company. Book Bollywood stars, singers, DJs & influencers for concerts, corporate events & brand launches."
       canonical={typeof window !== "undefined" ? window.location.origin + "/" : undefined}
     />
     <Hero />
-    <Marquee />
+    {/* <Marquee /> */}
     <EventTypes />
     <FeaturedCelebrities />
     <Testimonials />

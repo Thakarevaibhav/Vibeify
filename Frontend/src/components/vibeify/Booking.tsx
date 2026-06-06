@@ -55,8 +55,8 @@ export const Booking = () => {
 
             <ul className="space-y-5">
               {[
-                { icon: Mail, label: "hello@vibeify.in" },
-                { icon: Phone, label: "+91 98765 43210" },
+                { icon: Mail, label: "vibeify.connect@gmail.com" },
+                { icon: Phone, label: "+91 7887991028" },
                 { icon: MapPin, label: "Mumbai · Delhi · Dubai" },
               ].map((c) => (
                 <li key={c.label} className="flex items-center gap-4">
@@ -85,7 +85,7 @@ export const Booking = () => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="eventType">Event Type</Label>
-                <Input id="eventType" value={form.eventType} onChange={update("eventType")} placeholder="Wedding, brand launch, festival..." maxLength={80} />
+                <Input id="eventType" value={form.eventType} onChange={update("eventType")} placeholder="college fest, brand launch, festival..." maxLength={80} />
               </div>
             </div>
             <div className="space-y-2">

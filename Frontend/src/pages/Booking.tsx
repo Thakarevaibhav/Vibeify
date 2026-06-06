@@ -12,7 +12,6 @@ import { Heart, Building2, GraduationCap, PartyPopper, Music2, Megaphone, Check,
 import { toast } from "sonner";
 
 const eventTypes = [
-  { id: "wedding", label: "Wedding", icon: Heart },
   { id: "corporate", label: "Corporate", icon: Building2 },
   { id: "concert", label: "Concert / Live Show", icon: Music2 },
   { id: "private", label: "Private Party", icon: PartyPopper },

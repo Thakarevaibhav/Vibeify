@@ -5,7 +5,7 @@ import { getGallery, type GalleryItem } from "@/lib/api";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Play } from "lucide-react";
 
-const cats = ["All", "Wedding", "Concert", "Corporate", "College Fest", "Brand Launch"] as const;
+const cats = ["All", "Concert", "Corporate", "College Fest", "Brand Launch"] as const;
 
 const GalleryPage = () => {
   const [cat, setCat] = useState<string>("All");
@@ -31,12 +31,12 @@ const GalleryPage = () => {
 
   return (
     <>
-      <Seo title="Event Gallery — Photos & Films from Vibeify Productions" description="A visual archive of Vibeify's celebrity weddings, concerts, corporate galas and brand launches." />
+      <Seo title="Event Gallery — Photos & Films from Vibeify Productions" description="A visual archive of Vibeify's celebrity  concerts, corporate galas and brand launches." />
 
       <PageHeader
         eyebrow="Gallery"
         title={<>Moments from the <span className="text-gold">spotlight</span></>}
-        subtitle="A visual archive of weddings, concerts, corporate galas and brand events produced by Vibeify."
+        subtitle="A visual archive of  concerts, corporate galas and brand events produced by Vibeify."
       />
 
       <section className="container pb-32">

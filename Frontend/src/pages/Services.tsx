@@ -20,11 +20,7 @@ const services = [
     desc: "Endorsements, IP creation and 360° celebrity campaigns built around the right star fit.",
     bullets: ["Talent matching", "Shoot production", "Media buying", "PR amplification"],
   },
-  {
-    icon: Heart, title: "Wedding Celebrity Appearances",
-    desc: "Make your big day legendary with intimate performances and surprise red-carpet moments.",
-    bullets: ["Sangeet headliners", "Baraat & DJ acts", "Bridal entry choreography", "Discreet hospitality"],
-  },
+  
   {
     icon: Building2, title: "Corporate Event Handling",
     desc: "Annual days, conferences, product unveils and IPO galas executed with executive precision.",
@@ -39,7 +35,7 @@ const services = [
 
 const Services = () => (
   <>
-    <Seo title="Services — Vibeify Celebrity & Event Management" description="Celebrity booking, event management, brand promotions, weddings, corporate events and live concerts — handled end-to-end by Vibeify." />
+    <Seo title="Services — Vibeify Celebrity & Event Management" description="Celebrity booking, event management, brand promotions, corporate events and live concerts — handled end-to-end by Vibeify." />
 
     <PageHeader
       eyebrow="What we do"

@@ -13,7 +13,7 @@ export const Footer = () => (
             Vibeify is a luxury celebrity event management & talent booking agency crafting unforgettable cultural moments across India and the world.
           </p>
           <div className="flex gap-3 mt-6">
-            {[Instagram, Twitter, Youtube, Linkedin].map((Icon, i) => (
+            {[Instagram, Twitter, Youtube].map((Icon, i) => (
               <a key={i} href="#" aria-label="Social" className="p-2.5 rounded-full glass hover:border-primary/60 hover:bg-primary/10 transition-all">
                 <Icon className="h-4 w-4" />
               </a>
@@ -36,16 +36,15 @@ export const Footer = () => (
             <li>Celebrity Bookings</li>
             <li>Event Management</li>
             <li>Brand Promotions</li>
-            <li>Wedding Appearances</li>
             <li>Corporate Events</li>
           </ul>
         </div>
         <div>
           <h4 className="font-display text-lg font-bold mb-4 text-gold">Contact</h4>
           <ul className="space-y-2 text-muted-foreground text-sm">
-            <li>hello@vibeify.in</li>
-            <li>+91 98765 43210</li>
-            <li>Bandra West, Mumbai</li>
+            <li>vibeify.connect@gmail.com</li>
+            <li>+91 7887991028</li>
+            {/* <li>Bandra West, Mumbai</li> */}
             <li className="flex items-center gap-2 mt-3">
               <MessageCircle className="h-4 w-4 text-primary" /> WhatsApp 24/7
             </li>

@@ -3,7 +3,6 @@ import { Mic2, Music2, Film, PartyPopper, Camera, Crown } from "lucide-react";
 const services = [
   { icon: Mic2, title: "Celebrity Bookings", desc: "Bollywood stars, international artists, athletes & influencers — secured end-to-end." },
   { icon: Music2, title: "Concert Production", desc: "Full-scale concert design from stage engineering to sound, lights & crowd flow." },
-  { icon: PartyPopper, title: "Private Events", desc: "Weddings, anniversaries & milestone celebrations elevated by star performers." },
   { icon: Film, title: "Brand Activations", desc: "Launches, IP creation & celebrity-led campaigns that move audiences." },
   { icon: Camera, title: "Content & PR", desc: "Editorial-grade content capture, press strategy & social-first storytelling." },
   { icon: Crown, title: "VIP Hospitality", desc: "White-glove logistics, security, travel & accommodation for talent and guests." },

@@ -22,7 +22,7 @@ export const Talent = () => (
           </h2>
         </div>
         <p className="text-muted-foreground max-w-md">
-          A handpicked selection. Vibeify represents and books 500+ artists across music, film, sports & digital.
+          A handpicked selection. Vibeify represents and books 100+ artists across music, film, sports & digital.
         </p>
       </div>
 

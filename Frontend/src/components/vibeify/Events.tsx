@@ -3,7 +3,6 @@ import { Calendar, MapPin } from "lucide-react";
 const events = [
   { tag: "Music Festival", title: "Echoverse 2025", location: "Mumbai", date: "Dec 14, 2025", color: "from-primary/40 to-accent/40" },
   { tag: "Brand Launch", title: "Aurum Watches Gala", location: "Dubai", date: "Nov 02, 2025", color: "from-secondary/40 to-primary/30" },
-  { tag: "Private Wedding", title: "The Sharma–Khan Affair", location: "Udaipur", date: "Feb 09, 2026", color: "from-accent/40 to-secondary/30" },
   { tag: "Award Show", title: "Vibe Choice Awards", location: "Delhi", date: "Mar 22, 2026", color: "from-primary/40 to-secondary/30" },
 ];
 

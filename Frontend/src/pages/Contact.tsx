@@ -69,10 +69,10 @@ const ContactPage = () => {
           <div className="space-y-6">
             <div className="glass rounded-3xl p-8 space-y-5">
               {[
-                { icon: Mail, label: "Email", value: "hello@vibeify.in" },
-                { icon: Phone, label: "Phone", value: "+91 98765 43210" },
-                { icon: MessageCircle, label: "WhatsApp", value: "+91 98765 43210" },
-                { icon: MapPin, label: "Studio", value: "Vibeify HQ, Bandra West, Mumbai 400050" },
+                { icon: Mail, label: "Email", value: "vibeify.connect@gmail.com" },
+                { icon: Phone, label: "Phone", value: "+91 7887991028" },
+                { icon: MessageCircle, label: "WhatsApp", value: "+91 7887991028" },
+                // { icon: MapPin, label: "Studio", value: "Vibeify HQ, Bandra West, Mumbai 400050" },
               ].map((c) => (
                 <div key={c.label} className="flex items-start gap-4">
                   <div className="p-3 rounded-xl bg-gradient-gold shrink-0"><c.icon className="h-5 w-5 text-primary-foreground" /></div>
@@ -86,8 +86,8 @@ const ContactPage = () => {
 
             <div className="rounded-3xl overflow-hidden border border-border h-[320px] glass">
               <iframe
-                title="Vibeify Mumbai Office"
-                src="https://www.google.com/maps?q=Bandra+West,+Mumbai&output=embed"
+                title="Vibeify Nagpur Office"
+                src="https://www.google.com/maps?q=chitnis Nagar garden,+Nagpur&output=embed"
                 className="w-full h-full grayscale contrast-125 opacity-90"
                 loading="lazy"
               />

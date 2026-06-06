@@ -50,7 +50,7 @@ const CelebritiesPage = () => {
       <PageHeader
         eyebrow="The Roster"
         title={<>Browse our <span className="text-gold">talent</span></>}
-        subtitle="500+ artists across film, music, sport and digital. Filter by category, price and popularity."
+        subtitle="100+ artists across film, music, sport and digital. Filter by category, price and popularity."
       />
 
       <section className="container pb-32">

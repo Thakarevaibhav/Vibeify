@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { toast } from "sonner";
 import { Plus, Trash2, Upload } from "lucide-react";
 
-const CATS = ["All", "Wedding", "Concert", "Corporate", "College Fest", "Brand Launch"];
+const CATS = ["All", "Concert", "Corporate", "College Fest", "Brand Launch"];
 
 const AdminGallery = () => {
   const [list, setList] = useState<GalleryItem[]>([]);

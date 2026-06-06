@@ -27,7 +27,7 @@ export const FeaturedCelebrities = () => {
             </h2>
           </div>
           <Button variant="outline" size="lg" asChild>
-            <Link to="/celebrities">View all 500+ <ArrowRight className="ml-1" /></Link>
+            <Link to="/celebrities">View all 100+ <ArrowRight className="ml-1" /></Link>
           </Button>
         </div>
 

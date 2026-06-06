@@ -2,12 +2,13 @@ import { Heart, Building2, GraduationCap, PartyPopper, Music2, Megaphone } from 
 import { Link } from "react-router-dom";
 
 const types = [
-  { icon: Heart, title: "Weddings", desc: "Royal weddings & sangeets with celebrity performances and red-carpet glamour.", to: "/services" },
+  { icon: GraduationCap, title: "College Fests", desc: "India's biggest campus shows — DJs, comedians, headliners.", to: "/services" },
+
   { icon: Music2, title: "Concerts & Live Shows", desc: "Stadium-scale concerts with full production, ticketing and tour management.", to: "/services" },
   { icon: Building2, title: "Corporate Events", desc: "Annual days, conferences, product unveils — handled with executive precision.", to: "/services" },
   { icon: PartyPopper, title: "Private Parties", desc: "Birthdays, anniversaries & milestones with intimate celebrity appearances.", to: "/services" },
   { icon: Megaphone, title: "Brand Promotions", desc: "Endorsements, launches and campaigns built around the right star fit.", to: "/services" },
-  { icon: GraduationCap, title: "College Fests", desc: "India's biggest campus shows — DJs, comedians, headliners.", to: "/services" },
+
 ];
 
 export const EventTypes = () => (

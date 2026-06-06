@@ -33,12 +33,12 @@ const EventsPage = () => {
 
   return (
     <>
-      <Seo title="Events — Upcoming & Past Productions by Vibeify" description="Explore Vibeify's upcoming concerts, weddings, brand launches and past celebrity events across India and the world." />
+      <Seo title="Events — Upcoming & Past Productions by Vibeify" description="Explore Vibeify's upcoming concerts, brand launches and past celebrity events across India and the world." />
 
       <PageHeader
         eyebrow="Productions"
         title={<>Events that <span className="text-gold">define culture</span></>}
-        subtitle="From stadium concerts to royal weddings — every Vibeify event is built to be remembered."
+        subtitle="From stadium concerts to college fest  — every Vibeify event is built to be remembered."
       />
 
       <section className="container pb-32">
