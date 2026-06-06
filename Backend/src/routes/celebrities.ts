@@ -49,7 +49,7 @@ const celebSchema = z.object({
   bio: z.string().trim().max(1000).default(""),
   followers: z.string().trim().max(20).default("0"),
   popularity: z.coerce.number().int().min(0).max(100).default(50),
-  priceRange: z.coerce.number().int().min(0).default(10),
+  priceRange: z.coerce.number().min(0).default(10),
   pastEvents: z.preprocess((v) => typeof v === "string" ? JSON.parse(v) : v, z.array(z.string())).default([]),
   tags: z.preprocess((v) => typeof v === "string" ? JSON.parse(v) : v, z.array(z.string())).default([]),
   isActive: z.coerce.boolean().default(true),
