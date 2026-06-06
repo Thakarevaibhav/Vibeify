@@ -62,6 +62,7 @@ export interface GalleryItem {
   imageUrl: string;
   title: string;
   category: string;
+  type: "image" | "video";
 }
 
 export const getGallery = (params?: Record<string, string>) => {

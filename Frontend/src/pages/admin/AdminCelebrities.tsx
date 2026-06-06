@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { Plus, Pencil, Trash2, X } from "lucide-react";
 import { getImageUrl } from "@/lib/utils";
 
-const CATS = ["Actor", "Singer", "DJ", "Influencer", "Comedian", "Sports", "Dancer"];
+const CATS = ["Actor", "Actress", "Singer", "DJ", "Influencer", "Comedian", "Sports", "Dancer"];
 const EMPTY = { slug: "", name: "", category: "Actor", bio: "", followers: "", popularity: "80", priceRange: "20", pastEvents: "", tags: "", isActive: "true" };
 
 const AdminCelebrities = () => {

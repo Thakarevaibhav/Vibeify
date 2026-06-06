@@ -45,7 +45,7 @@ router.get("/:slug", async (req: Request, res: Response) => {
 const celebSchema = z.object({
   slug: z.string().trim().min(2).max(100),
   name: z.string().trim().min(2).max(100),
-  category: z.enum(["Actor", "Singer", "DJ", "Influencer", "Comedian", "Sports", "Dancer"]),
+  category: z.enum(["Actor", "Actress", "Singer", "DJ", "Influencer", "Comedian", "Sports", "Dancer"]),
   bio: z.string().trim().max(1000).default(""),
   followers: z.string().trim().max(20).default("0"),
   popularity: z.coerce.number().int().min(0).max(100).default(50),

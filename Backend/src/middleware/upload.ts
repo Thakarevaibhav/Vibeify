@@ -10,13 +10,28 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
-const maxSize = Number(process.env.MAX_FILE_SIZE_MB || 10) * 1024 * 1024;
+// File type configurations
+const imageTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+const videoTypes = ["video/mp4", "video/webm", "video/quicktime"];
+const allowedTypes = [...imageTypes, ...videoTypes];
+
+const maxSize = Number(process.env.MAX_FILE_SIZE_MB || 100) * 1024 * 1024;
 
 // Use memory storage to get buffer for Cloudinary upload
 const storage = multer.memoryStorage();
 
-const fileFilter = (_req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+// File filter for images only
+const imageFileFilter = (_req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+  imageTypes.includes(file.mimetype) ? cb(null, true) : cb(new Error(`Invalid image type: ${file.mimetype}`));
+};
+
+// File filter for videos only
+const videoFileFilter = (_req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+  videoTypes.includes(file.mimetype) ? cb(null, true) : cb(new Error(`Invalid video type: ${file.mimetype}`));
+};
+
+// File filter for both images and videos
+const generalFileFilter = (_req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
   allowedTypes.includes(file.mimetype) ? cb(null, true) : cb(new Error(`Invalid file type: ${file.mimetype}`));
 };
 
@@ -38,5 +53,9 @@ export const uploadToCloudinary = (buffer: Buffer, fileName: string): Promise<{ 
   });
 };
 
-export const uploadSingle = multer({ storage, fileFilter, limits: { fileSize: maxSize } }).single("image");
-export const uploadMultiple = multer({ storage, fileFilter, limits: { fileSize: maxSize } }).array("images", 20);
+// Image uploads (for celebrities and events)
+export const uploadSingle = multer({ storage, fileFilter: imageFileFilter, limits: { fileSize: maxSize } }).single("image");
+
+// Gallery uploads (images and videos)
+export const uploadGallerySingle = multer({ storage, fileFilter: generalFileFilter, limits: { fileSize: maxSize } }).single("file");
+export const uploadGalleryMultiple = multer({ storage, fileFilter: generalFileFilter, limits: { fileSize: maxSize } }).array("files", 20);

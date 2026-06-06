@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-export type Category = "Actor" | "Singer" | "DJ" | "Influencer" | "Comedian" | "Sports" | "Dancer";
+export type Category = "Actor" | "Actress" | "Singer" | "DJ" | "Influencer" | "Comedian" | "Sports" | "Dancer";
 
 export interface ICelebrity extends Document {
   slug: string;
@@ -20,7 +20,7 @@ const CelebritySchema = new Schema<ICelebrity>(
   {
     slug: { type: String, required: true, unique: true, lowercase: true, trim: true },
     name: { type: String, required: true, trim: true },
-    category: { type: String, required: true, enum: ["Actor","Singer","DJ","Influencer","Comedian","Sports","Dancer"] },
+    category: { type: String, required: true, enum: ["Actor","Actress","Singer","DJ","Influencer","Comedian","Sports","Dancer"] },
     imageUrl: { type: String, required: true },
     bio: { type: String, default: "" },
     followers: { type: String, default: "0" },

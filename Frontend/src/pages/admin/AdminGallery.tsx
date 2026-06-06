@@ -23,17 +23,17 @@ const AdminGallery = () => {
   useEffect(() => { load(); }, []);
 
   const upload = async () => {
-    if (!files.length) { toast.error("Select at least one image"); return; }
+    if (!files.length) { toast.error("Select at least one file"); return; }
     setSaving(true);
     try {
       for (const file of files) {
         const fd = new FormData();
-        fd.append("image", file);
+        fd.append("file", file);
         fd.append("title", title || file.name.replace(/\.[^.]+$/, ""));
         fd.append("category", category);
         await adminUploadGallery(fd);
       }
-      toast.success(`${files.length} image(s) uploaded`);
+      toast.success(`${files.length} file(s) uploaded`);
       setOpen(false); setFiles([]); setTitle(""); load();
     } catch (e: any) { toast.error(e.message); } finally { setSaving(false); }
   };
@@ -54,11 +54,22 @@ const AdminGallery = () => {
         <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3">
           {list.map(g => (
             <div key={g._id} className="relative rounded-xl overflow-hidden group break-inside-avoid">
-              <img src={getImageUrl(g.imageUrl)} alt={g.title} className="w-full object-cover" />
+              {g.type === "video" ? (
+                <>
+                  <video src={getImageUrl(g.imageUrl)} className="w-full h-40 object-cover bg-muted" />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                    <div className="p-2 rounded-full bg-primary">
+                      <span className="text-white text-sm">▶</span>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <img src={getImageUrl(g.imageUrl)} alt={g.title} className="w-full object-cover" />
+              )}
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                 <div className="flex-1 min-w-0">
                   <p className="text-xs text-white truncate">{g.title}</p>
-                  <p className="text-[10px] text-white/60">{g.category}</p>
+                  <p className="text-[10px] text-white/60">{g.category} {g.type === "video" && "• Video"}</p>
                 </div>
                 <button onClick={() => del(g._id)} className="ml-2 p-1.5 rounded-lg bg-red-500/80 hover:bg-red-500 text-white shrink-0">
                   <Trash2 className="h-3.5 w-3.5" />
@@ -66,20 +77,20 @@ const AdminGallery = () => {
               </div>
             </div>
           ))}
-          {list.length === 0 && <p className="text-muted-foreground text-sm">No images yet.</p>}
+          {list.length === 0 && <p className="text-muted-foreground text-sm">No files yet.</p>}
         </div>
       )}
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-w-md">
-          <DialogHeader><DialogTitle>Upload Images</DialogTitle></DialogHeader>
+          <DialogHeader><DialogTitle>Upload Images & Videos</DialogTitle></DialogHeader>
           <div className="space-y-4 mt-2">
             <div>
-              <Label>Images <span className="text-red-400">*</span></Label>
+              <Label>Files (Images/Videos) <span className="text-red-400">*</span></Label>
               <label className="mt-1 flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-border rounded-2xl cursor-pointer hover:border-primary/50 transition-colors">
                 <Upload className="h-6 w-6 text-muted-foreground mb-1" />
-                <span className="text-sm text-muted-foreground">{files.length ? `${files.length} file(s) selected` : "Click or drag images"}</span>
-                <input type="file" accept="image/*" multiple className="hidden" onChange={e => setFiles(Array.from(e.target.files || []))} />
+                <span className="text-sm text-muted-foreground">{files.length ? `${files.length} file(s) selected` : "Click or drag images/videos"}</span>
+                <input type="file" accept="image/*,video/*" multiple className="hidden" onChange={e => setFiles(Array.from(e.target.files || []))} />
               </label>
             </div>
             <div className="space-y-1">
@@ -96,7 +107,13 @@ const AdminGallery = () => {
               <div className="flex gap-2 flex-wrap max-h-24 overflow-y-auto">
                 {files.map((f, i) => (
                   <div key={i} className="relative">
-                    <img src={URL.createObjectURL(f)} className="h-16 w-16 object-cover rounded-lg" />
+                    {f.type.startsWith("video/") ? (
+                      <div className="h-16 w-16 rounded-lg bg-muted flex items-center justify-center">
+                        <span className="text-xs text-muted-foreground">▶ Video</span>
+                      </div>
+                    ) : (
+                      <img src={URL.createObjectURL(f)} className="h-16 w-16 object-cover rounded-lg" />
+                    )}
                   </div>
                 ))}
               </div>

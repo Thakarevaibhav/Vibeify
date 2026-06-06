@@ -28,10 +28,10 @@ export const Navbar = () => {
   useEffect(() => { setOpen(false); }, [pathname]);
 
   return (
-    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}>
+    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "py-1.5" : "py-4"}`}>
       <div className="container">
-        <nav className={`flex items-center justify-between rounded-2xl px-5 py-3 transition-all ${scrolled ? "glass-strong" : ""}`}>
-          <Link to="/"><Logo /></Link>
+        <nav className={`flex items-center justify-between rounded-2xl px-5 ${scrolled ? "py-2" : "py-3"} transition-all ${scrolled ? "glass-strong" : ""}`}>
+          <Link to="/"><Logo variant="image" scrolled={scrolled} className="shrink-0" /></Link>
           <ul className="hidden lg:flex items-center gap-7">
             {links.map((l) => (
               <li key={l.to}>

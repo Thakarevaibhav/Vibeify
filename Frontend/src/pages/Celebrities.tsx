@@ -18,6 +18,7 @@ type Sort = "popularity" | "price-low" | "price-high";
 const CATEGORIES = [
   "All",
   "Actor",
+  "Actress",
   "Singer",
   "DJ",
   "Influencer",

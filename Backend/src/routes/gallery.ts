@@ -3,7 +3,7 @@ import { z } from "zod";
 import { Gallery } from "../models/Gallery";
 import { Upload } from "../models/Upload";
 import { requireAdmin, AuthRequest } from "../middleware/auth";
-import { uploadSingle, uploadMultiple, uploadToCloudinary } from "../middleware/upload";
+import { uploadGallerySingle, uploadGalleryMultiple, uploadToCloudinary } from "../middleware/upload";
 
 const router = Router();
 
@@ -34,18 +34,20 @@ router.get("/:id", async (req: Request, res: Response) => {
   return res.json({ success: true, data: item });
 });
 
-// POST /api/gallery — admin, single upload
+// POST /api/gallery — admin, single upload (image or video)
 router.post("/", requireAdmin, (req: AuthRequest, res: Response) => {
-  uploadSingle(req, res, async (err) => {
+  uploadGallerySingle(req, res, async (err) => {
     if (err) return res.status(400).json({ success: false, message: err.message });
-    if (!req.file) return res.status(400).json({ success: false, message: "No image file provided" });
+    if (!req.file) return res.status(400).json({ success: false, message: "No file provided" });
     try {
       const { secure_url: imageUrl, public_id } = await uploadToCloudinary(req.file.buffer, req.file.originalname);
+      const fileType = req.file.mimetype.startsWith("video/") ? "video" : "image";
       await Upload.create({ filename: public_id, originalName: req.file.originalname, mimeType: req.file.mimetype, sizeBytes: req.file.size, url: imageUrl, uploadedBy: req.adminId });
       const item = await Gallery.create({
         imageUrl,
         title: req.body.title || "",
         category: req.body.category || "All",
+        type: fileType,
         eventId: req.body.eventId || undefined,
         sortOrder: Number(req.body.sortOrder) || 0,
       });
@@ -56,19 +58,20 @@ router.post("/", requireAdmin, (req: AuthRequest, res: Response) => {
   });
 });
 
-// POST /api/gallery/bulk — admin, multiple upload
+// POST /api/gallery/bulk — admin, multiple upload (images and videos)
 router.post("/bulk", requireAdmin, (req: AuthRequest, res: Response) => {
-  uploadMultiple(req, res, async (err) => {
+  uploadGalleryMultiple(req, res, async (err) => {
     if (err) return res.status(400).json({ success: false, message: err.message });
     const files = req.files as Express.Multer.File[];
     if (!files?.length) return res.status(400).json({ success: false, message: "No files provided" });
     try {
       const items = await Promise.all(files.map(async (file) => {
         const { secure_url: imageUrl, public_id } = await uploadToCloudinary(file.buffer, file.originalname);
+        const fileType = file.mimetype.startsWith("video/") ? "video" : "image";
         await Upload.create({ filename: public_id, originalName: file.originalname, mimeType: file.mimetype, sizeBytes: file.size, url: imageUrl, uploadedBy: req.adminId });
-        return Gallery.create({ imageUrl, title: file.originalname.replace(/\.[^.]+$/, ""), category: req.body.category || "All", eventId: req.body.eventId || undefined, sortOrder: 0 });
+        return Gallery.create({ imageUrl, title: file.originalname.replace(/\.[^.]+$/, ""), category: req.body.category || "All", type: fileType, eventId: req.body.eventId || undefined, sortOrder: 0 });
       }));
-      return res.status(201).json({ success: true, data: items, message: `${items.length} image(s) uploaded` });
+      return res.status(201).json({ success: true, data: items, message: `${items.length} file(s) uploaded` });
     } catch (e: any) {
       return res.status(400).json({ success: false, message: e.message });
     }
