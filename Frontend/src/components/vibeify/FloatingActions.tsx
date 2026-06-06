@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MessageCircle, X, Phone, Send } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const WHATSAPP = "919876543210";
+const WHATSAPP = "917887991028";
 
 export const FloatingActions = () => {
   const [open, setOpen] = useState(false);
@@ -33,13 +33,13 @@ export const FloatingActions = () => {
               </div>
             </a>
             <a
-              href="tel:+919876543210"
+              href="tel:+917887991028"
               className="flex items-center gap-3 p-3 rounded-xl bg-primary/10 border border-primary/30 hover:bg-primary/20 transition-colors"
             >
               <div className="p-2 rounded-lg bg-gradient-gold"><Phone className="h-4 w-4 text-primary-foreground" /></div>
               <div>
                 <p className="text-sm font-semibold">Call us</p>
-                <p className="text-xs text-muted-foreground">+91 98765 43210</p>
+                <p className="text-xs text-muted-foreground">+91 78879 91028</p>
               </div>
             </a>
             <Link
